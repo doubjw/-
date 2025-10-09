@@ -5,90 +5,83 @@
 int main()
 {
 	setlocale(LC_ALL, "ru");
+
 	std::cout << "Задача№1\n";
-	double S;
-	double t;
-	double v;
-	std::cout << "Введите расстояние до аэропорта в км:";
-	std::cin >> S;
-	std::cout << "Введите время, за которое нужно доехать, в часах:";
-	std::cin >> t;
 
-	if (S == 0 || t == 0)
-	{
-		std::cout << "Ошибка!! Время/Расстояние не могут быть равны нулю!";
-	}
-	else
-	{
-		v = S / t;
-		std::cout << "Скорость, с которой нужно будет ехать, равна " << v << " км/ч";
-	}
+    int num;
 
-	std::cout << "\nЗадача№2\n";
+    std::cout << "Введите шестизначное число:";
+    std::cin >> num;
 
-	int start_hours, start_minutes, start_seconds;
-	int end_hours, end_minutes, end_seconds;
-	std::cout << "Введите время начала поездки:\n";
-	std::cout << "Часы:";
-	std::cin >> start_hours;
-	std::cout << "Минуты:";
-	std::cin >> start_minutes;
-	std::cout << "Секунды:";
-	std::cin >> start_seconds;
-	std::cout << "Введите время конца поездки:\n";
-	std::cout << "Часы:";
-	std::cin >> end_hours;
-	std::cout << "Минуты:";
-	std::cin >> end_minutes;
-	std::cout << "Секунды:";
-	std::cin >> end_seconds;
+    if (num < 100000 || num > 999999) 
+    {
+        std::cout << "Ошибка! Число должно быть шестизначным!\n";
+        return 0;
+    }
 
-	int result_start_seconds = start_hours * 3600 + start_minutes * 60 + start_seconds;
-	int result_end_seconds = end_hours * 3600 + end_minutes * 60 + end_seconds;
-	int result_seconds = result_end_seconds - result_start_seconds;
-	int result_minutes = result_seconds / 60;
+    int digit1 = num / 100000;
+    int digit2 = (num / 10000) % 10;
+    int digit3 = (num / 1000) % 10;
+    int digit4 = (num / 100) % 10;
+    int digit5 = (num / 10) % 10;
+    int digit6 = num % 10;
 
-	if (result_seconds % 60 != 0)
-	{
-		result_minutes++;
-	}
+    int sum1 = digit1 + digit2 + digit3;
+    int sum2 = digit4 + digit5 + digit6;
 
-	double price = result_minutes * 2;
+    if (sum1 == sum2)
+    {
+        std::cout << "Число " << num << " является счастливым!\n";
+    }
+    else
+    {
+        std::cout << "Число " << num << " не является счастливым.\n";
+    }
 
-	std::cout << "Стоимость поездки: " << price << " гривен";
+    std::cout << "\nЗадача№2\n";
 
-	std::cout << "\nЗадача№3\n";
+    int number;
 
-	double trip_d, consu;
-	double price1, price2, price3;
+    std::cout << "Введите четырехзначное число:";
+    std::cin >> number;
 
-	std::cout << "Введите расстояние поездки в км:";
-	std::cin >> trip_d;
-	std::cout << "Введите расход бензина на 100км в литрах:";
-	std::cin >> consu;
-	std::cout << "Введите стоимость первого бензина в гривнах:";
-	std::cin >> price1;
-	std::cout << "Введите стоимость второго бензина в гривнах:";
-	std::cin >> price2;
-	std::cout << "Введите стоимость третьего бензина в гривнах:";
-	std::cin >> price3;
+    if (number < 1000 || number > 9999)
+    {
+        std::cout << "Ошибка! Число должно быть четырехзначным!\n";
+    }
 
-	double result = (trip_d / 100) * consu;
+    int d1 = number / 1000;
+    int d2 = (number / 100) % 10;
+    int d3 = (number / 10) % 10;
+    int d4 = number % 10;
 
-	double cost1 = result * price1;
-	double cost2 = result * price2;
-	double cost3 = result * price3;
+    int number2 = d2 * 1000 + d1 * 100 + d4 * 10 + d3;
 
-	std::cout << "\nСравнительная таблица:\n";
-	std::cout << "| Вид бензина | Стоимость за литр | Общая стоимость в гривнах |\n";
-	std::cout << "_______________________________________________________\n";
-	std::cout << "|   Бензин 1  |  " << price1 << " |  " << cost1 << " |\n";
-	std::cout << "_______________________________________________________\n";
-	std::cout << "|   Бензин 2  |  " << price2 << " |  " << cost2 << " |\n";
-	std::cout << "_______________________________________________________\n";
-	std::cout << "|   Бензин 3  |  " << price3 << " |  " << cost3 << " |\n";
-	std::cout << "_______________________________________________________\n";
-	std::cout << "Расход бензина на поездку: " << result << " литров";
+    std::cout << "Число после перестановки " << number2 << "\n";
+
+    std::cout << "\nЗадача№3\n";
+
+    int numbers[7];
+
+    std::cout << "Введите 7 целых чисел:\n";
+
+    for (int i = 0; i < 7; i++) 
+    {
+        std::cout << "Число " << (i + 1) << ":";
+        std::cin >> numbers[i];
+    }
+
+    int max = numbers[0];
+
+    for (int i = 1; i < 7; i++) 
+    {
+        if (numbers[i] > max) 
+        {
+            max = numbers[i];
+        }
+    }
+
+    std::cout << "Максимальное число " << max << "\n";
 
 	return 0;
 
